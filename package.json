@@ -1,0 +1,23 @@
+{
+  "name": "rest_api_tutorial",
+  "version": "1.0.0",
+  "description": "tutorial following Web Dev Simplified",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "mongoDB"
+  ],
+  "author": "Web Dev Simplified Youtube",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}
