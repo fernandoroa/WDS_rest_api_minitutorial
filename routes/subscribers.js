@@ -12,8 +12,8 @@ router.get("/", async (req, res) => {
 });
 
 // get one
-router.get("/:id", (req, res) => {
-  res.send(req.params.id);
+router.get("/:id", getSubscriber, (req, res) => {
+  res.json(res.subscriber);
 });
 
 // create one
@@ -31,9 +31,30 @@ router.post("/", async (req, res) => {
 });
 
 // updating one
-router.patch("/:id", (req, res) => {});
+router.patch("/:id", getSubscriber, (req, res) => {});
 
 // delete one
-router.delete("/:id", (req, res) => {});
+router.delete("/:id", getSubscriber, async (req, res) => {
+  try {
+    await res.subscriber.deleteOne();
+    res.json({ message: "Deleted Subscriber" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+async function getSubscriber(req, res, next) {
+  let subscriber;
+  try {
+    subscriber = await Subscriber.findById(req.params.id);
+    if (subscriber == null) {
+      return res.status(404).json({ message: "Cannot find subscriber" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+  res.subscriber = subscriber;
+  next();
+}
 
 module.exports = router;
