@@ -17,7 +17,13 @@ MongoDB:
 - Check that mongod is running correctly:  
   ubuntu: `systemctl status mongod`
 
-- Run API:
+- create `.env` file:  
+  `DATABASE_URL=mongodb://localhost/subscribers`
+
+- install dependencies  
+  `npm install`
+
+- Run API:  
   `npm run devStart`
 
 - Examples to run with `REST Client` VSCode plugin, use a `.rest` file extension
